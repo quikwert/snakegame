@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main{
-    public final static int HEIGHT = 8;
+    public final static int HEIGHT = 20;
     public final static int WIDTH = HEIGHT;
     public final static int x[] = new int[WIDTH*HEIGHT];
     public final static int y[] = new int[HEIGHT*HEIGHT];
@@ -9,13 +9,13 @@ public class Main{
     public static int[] direction = new int[2];
     public static int appleX;
     public static int appleY;
-    public final static String headIcon = "◉";
-    public final static String bodyIcon = "●";
-    public final static String appleIcon = "◍";
+    public final static String headIcon = "@";
+    public final static String bodyIcon = "o";
+    public final static String appleIcon = "Q";
     public static Thread thread;
     public static Thread thread2;
 
-    public static int tickspeed = 1000;
+    public static int tickspeed = 1000/15;
     public static void resetGame(){
         direction[0]=1;
         direction[1]=0;
@@ -36,6 +36,10 @@ public class Main{
                     move();
                     bodyParts++;
                     checkColllision();
+                    try{
+                        new ProcessBuilder("cmd", "/c", "cls" ).inheritIO().start().waitFor();
+                    }catch(Exception e){}
+
                     draw();
                     try{
                         Thread.sleep(tickspeed);
@@ -117,7 +121,7 @@ public class Main{
         System.out.print("\n\n\n\n\n");
         for(int i = 0; i < HEIGHT;i++){
             for(int j = 0; j < WIDTH;j++){
-                String toPrint = "◯";
+                String toPrint = ".";
                 if(j==appleX&&i==appleY) toPrint = appleIcon;
                 for(int k = 0;k<bodyParts;k++){
                     if(x[k] == j && y[k] == i){
