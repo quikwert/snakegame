@@ -49,7 +49,6 @@ public class Main{
             @Override
             public void run() {
                 for(;;){
-
                     if(gameOn){
                         try{
                             new ProcessBuilder("cmd", "/c", "cls" ).inheritIO().start().waitFor();
@@ -64,7 +63,7 @@ public class Main{
                             Thread.sleep(tickSpeed);
                         }catch (Exception e){}
                     }else{
-                        System.out.print("");
+                        System.out.flush();
                     }
                 }
             }
